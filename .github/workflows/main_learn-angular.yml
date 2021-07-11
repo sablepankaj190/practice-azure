@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
 
     - name: Set up Node.js version
       uses: actions/setup-node@v1
@@ -23,9 +23,10 @@ jobs:
 
     - name: npm install, build, and test
       run: |
-        npm init
         npm install
         npm run build --prod
+      working-directory: .
+
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
@@ -53,4 +54,4 @@ jobs:
         app-name: 'learn-angular'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_170827a063c1480ca1889cd1c9920fa7 }}
-        package: .
+        package: ./dist

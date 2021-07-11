@@ -23,6 +23,7 @@ jobs:
 
     - name: npm install, build, and test
       run: |
+        npm init
         npm install
         npm run build --prod
       working-directory: .
@@ -33,4 +34,4 @@ jobs:
       with:
         app-name: 'practice-azure'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_2972d81ba4ce4af1a0013701023b41c5 }}
-        package: ./dist
+        package: ../../dist
